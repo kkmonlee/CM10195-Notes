@@ -1,10 +1,11 @@
 # Inter-Process Communication
+<div style="text-align: right">Thursday, 02. March 2017 11:15am </div>
 
 ## Shared Memory
 
 - Speed of shared memory means that it's very good for IPC, as long as it's supported by further mechanisms such as...
- - signals
- - semaphores
+	- signals
+	- semaphores
 - ... to flag when data is ready
 
 ---
@@ -20,7 +21,7 @@ A signal is a software equivalent of a **hardware interrupt**: they can be sent 
 - Like a hardware interrupt, when a process recveives a signal, it stops what it's doing and goes off to execute a *signal handler*, in direct analogy with an interrupt handler.
 - Handled within the user program: the signal handler is just some code in the program, written by the programmer.
 
-###### Not really what happens.
+**Not really what happens.**
 
 - When a signal is raised (which needs a syscall) the OS takes over and notes the signal in the receiving process' PCB
 - When the OS next runs that process, it jumps to the signal handler code within the process, rather than to the pace where the process was preempted.
@@ -166,10 +167,10 @@ We have to ensure that it works even if
 ---
 Suppose *S = 1* and we have processes A and B running, either being scheduled alternately or running simultaneously on two CPUs
 
-    A
+    A				B
     read S
-    get 1           read S
-                    get 1
+    get 1		 	read S
+    				get 1
     Set S = 0
                     Set S = 0
     runs            runs
